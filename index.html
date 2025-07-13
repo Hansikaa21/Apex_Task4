@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Project Web Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showPage('portfolio')" class="nav-link active">Portfolio</a></li>
+            <li><a href="#" onclick="showPage('todo')" class="nav-link">DailyDo</a></li>
+            <li><a href="#" onclick="showPage('products')" class="nav-link">ShopList</a></li>
+        </ul>
+    </nav> 
+
+    <!-- Portfolio Page -->
+    <div id="portfolio" class="page active">
+        <div class="container">
+            <div class="hero">
+                <h1>Greetings!</h1>
+                <h1><span>I'm Hansika.</span></h1>
+                <p>A Computer Science and Engineering graduate with a specialization in Artificial Intelligence and Machine Learning.</p>
+            </div>
+
+            <!-- About Section -->
+            <div class="section">
+                <h2>About Me</h2>
+                <p>I'm a passionate aspiring full-stack developer with a strong foundation in creating responsive, user-friendly web applications. I specialize in modern JavaScript frameworks and love building seamless digital experiences from front to back.</p>
+            </div>
+
+            <!-- Projects Section -->
+            <div class="section">
+                <h2>My Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Apex - Task 1</h3>
+                        <p> A responsive and interactive webpage built using HTML, CSS, and JavaScript.  
+                            It demonstrates basic web development skills including layout, styling, and interactivity.  
+                            The page features a button that opens the ApexPlanet website in a new tab.  
+                            This project was completed as part of the Apex Internship program.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Apex - Task 2</h3>
+                        <p>A responsive contact form built using HTML, CSS, and JavaScript featuring real-time validation  
+                           and user-friendly interactions like character counting and live error feedback.    
+                           Designed mobile-first with smooth scrolling and modern UX features.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Apex - Task 3</h3>
+                        <p>A feature-rich web application combining a CSS Quiz, Image Carousel, and Live Weather + Joke Generator.  
+                           Built with HTML, CSS, and JavaScript to deliver a responsive and engaging user experience.  
+                           It fetches real-time weather and jokes using public APIs and includes mobile-friendly design.  
+                        Interactive elements and smooth transitions enhance user interaction and creativity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="section">
+                <h2>Contact Me</h2>
+                <form class="contact-form" onsubmit="handleContactSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                    <p id="formMessage" style="color: rgb(51, 161, 216); font-weight: bold;"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Todo App Page -->
+    <div id="todo" class="page">
+        <div class="container">
+            <div class="section">
+                <p id="todoMessage" style="color: rgb(51, 161, 216); text-align: center; font-weight: bold;"></p>
+                <h2>DailyDo</h2>
+                <div class="todo-container">
+                    <!-- Task Input Form -->
+                    <div class="todo-input-section">
+                        <div class="todo-input">
+                            <input type="text" id="todoInput" placeholder="What needs to be done?">
+                            <select id="categorySelect">
+                                <option value="personal">Personal</option>
+                                <option value="work">Work</option>
+                                <option value="shopping">Shopping</option>
+                                <option value="health">Health</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <select id="prioritySelect">
+                                <option value="low">Low Priority</option>
+                                <option value="medium">Medium Priority</option>
+                                <option value="high">High Priority</option>
+                            </select>
+                            <input type="date" id="dueDateInput">
+                            <button class="btn" onclick="addTodo()">Add Task</button>
+                        </div>
+                    </div>
+
+                    <!-- Search and Filter Controls -->
+                    <div class="todo-controls">
+                        <div class="search-bar">
+                            <input type="text" id="searchInput" placeholder="Search tasks..." onkeyup="searchTodos()">
+                        </div>
+                        <div class="filter-controls">
+                            <select id="filterCategory" onchange="filterTodos()">
+                                <option value="">All Categories</option>
+                                <option value="personal">Personal</option>
+                                <option value="work">Work</option>
+                                <option value="shopping">Shopping</option>
+                                <option value="health">Health</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <select id="filterPriority" onchange="filterTodos()">
+                                <option value="">All Priorities</option>
+                                <option value="high">High Priority</option>
+                                <option value="medium">Medium Priority</option>
+                                <option value="low">Low Priority</option>
+                            </select>
+                            <select id="filterStatus" onchange="filterTodos()">
+                                <option value="all">All Tasks</option>
+                                <option value="pending">Pending</option>
+                                <option value="completed">Completed</option>
+                                <option value="overdue">Overdue</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Task Statistics -->
+                    <div class="todo-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalTasks">0</span>
+                            <span class="stat-label">Total Tasks</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="completedTasks">0</span>
+                            <span class="stat-label">Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="pendingTasks">0</span>
+                            <span class="stat-label">Pending</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="overdueTasks">0</span>
+                            <span class="stat-label">Overdue</span>
+                        </div>
+                    </div>
+
+                    <!-- Task List -->
+                    <div class="todo-list" id="todoList">
+                        <!-- Todo items will be dynamically added here -->
+                    </div>
+
+                    <!-- Bulk Actions -->
+                    <div class="bulk-actions">
+                        <button class="btn-secondary" onclick="markAllComplete()">Mark All Complete</button>
+                        <button class="btn-secondary" onclick="clearCompleted()">Clear Completed</button>
+                        <button class="btn-danger" onclick="clearAll()">Clear All Tasks</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Listing Page -->
+    <div id="products" class="page">
+        <div class="container">
+            <div class="section">
+                <h2>ShopList</h2>
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="categoryFilter">Category</label>
+                        <select id="categoryFilter" onchange="filterProducts()">
+                            <option value="">All Categories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="books">Books</option>
+                            <option value="home">Home</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="priceFilter">Max Price</label>
+                        <input type="number" id="priceFilter" placeholder="Enter max price" onchange="filterProducts()">
+                    </div>
+                    <div class="filter-group">
+                        <label for="sortFilter">Sort By</label>
+                        <select id="sortFilter" onchange="sortProducts()">
+                            <option value="name">Name</option>
+                            <option value="price">Price</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="customConfirmBox" style="display: none;">
+        <div id="confirmOverlay"></div>
+        <div id="confirmContent">
+             <p id="customConfirmMessage">Are you sure?</p>
+            <div class="confirm-buttons">
+                <button id="customConfirmYes">Yes</button>
+                <button id="customConfirmNo">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
