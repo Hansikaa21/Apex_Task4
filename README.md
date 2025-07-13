@@ -6,7 +6,7 @@ This repository contains three fully functional front-end web development projec
 
 1. Personal Portfolio Website
 
- Showcase skills and projects in a professional, multi-page website.
+   Showcase skills and projects in a professional, multi-page website.
 
 - Responsive Design: Fully functional across desktop, tablet, and mobile.
 - Navigation Menu: Smooth transitions between sections.
@@ -17,7 +17,7 @@ This repository contains three fully functional front-end web development projec
 
 2. 📝 To-Do List / DailyDo
 
-Objective: Develop a task management application that allows users to create, update, and delete tasks.
+   Objective: Develop a task management application that allows users to create, update, and delete tasks.
 
 Features:
 - Add, delete, and mark tasks/notes as completed.
@@ -26,7 +26,7 @@ Features:
 
 3. Product Listing / ShopList
 
-Objective: Create an interactive UI for filtering and sorting product data.
+   Objective: Create an interactive UI for filtering and sorting product data.
 
 Features:
 - Filter by Category or Price Range
